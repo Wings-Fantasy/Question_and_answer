@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DeleteActivity">
+
+    <TextView
+        android:id="@+id/reviseWordTip"
+        android:layout_width="284dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="39dp"
+        android:text="@string/deleteWordTip"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/wordList"
+        android:layout_width="283dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="19dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reviseWordTip" />
+
+    <TextView
+        android:id="@+id/deleteAnswerTip"
+        android:layout_width="284dp"
+        android:layout_height="34dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="19dp"
+        android:text="@string/deleteAnswerTip"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wordList" />
+
+    <EditText
+        android:id="@+id/answer"
+        android:layout_width="290dp"
+        android:layout_height="97dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="19dp"
+        android:focusable="false"
+        android:background="@android:drawable/edit_text"
+        android:ems="10"
+        android:enabled="true"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:maxLines="4"
+        android:minLines="4"
+        android:scrollbars="vertical"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteAnswerTip"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/deleteOK"
+        android:layout_width="290dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="17dp"
+        android:onClick="deleteOK_Click"
+        android:text="@string/deleteOK"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="290dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="45dp"
+        android:onClick="back_click"
+        android:text="@string/back"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteOK" />
+
+</android.support.constraint.ConstraintLayout>

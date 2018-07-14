@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">问答数据库</string>
+    <string name="questionTip">输入你想问的问题：</string>
+    <string name="question">在这里输入你的问题</string>
+    <string name="ok">提问</string>
+    <string name="answer">请提问</string>
+    <string name="answerTip">这是我的答案：</string>
+    <string name="add">添加数据</string>
+    <string name="addWordTip">请输入要添加的关键词：</string>
+    <string name="word">在这里输入关键词</string>
+    <string name="addAnswerTip">请输入匹配的答案：</string>
+    <string name="addAnswer">在这里输入答案</string>
+    <string name="addOK">添加</string>
+    <string name="back">返回</string>
+    <string name="delete">删除数据</string>
+    <string name="deleteWordTip">选择需要删除的关键词：</string>
+    <string name="deleteAnswerTip">这个关键词对应的答案是：</string>
+    <string name="deleteOK">删除</string>
+    <string name="revise">修改数据</string>
+    <string name="reviseWordTip">选择需要修改的关键词：</string>
+    <string name="reviseOK">修改</string>
+    <string name="reviseAnswerTip">请修改答案：</string>
+    <string name="input">导入数据包</string>
+    <string name="output">导出数据包</string>
+</resources>

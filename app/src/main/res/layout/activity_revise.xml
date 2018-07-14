@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ReviseActivity">
+
+    <TextView
+        android:id="@+id/reviseWordTip"
+        android:layout_width="284dp"
+        android:layout_height="35dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="39dp"
+        android:text="@string/reviseWordTip"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/wordList"
+        android:layout_width="281dp"
+        android:layout_height="46dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="19dp"
+        android:spinnerMode="dialog"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reviseWordTip" />
+
+    <TextView
+        android:id="@+id/reviseAnswerTip"
+        android:layout_width="284dp"
+        android:layout_height="34dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="19dp"
+        android:text="@string/reviseAnswerTip"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wordList" />
+
+    <EditText
+        android:id="@+id/answer"
+        android:layout_width="290dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reviseAnswerTip"
+        android:enabled="true"
+        android:gravity="top"
+        android:minLines="4"
+        android:maxLines="4"
+        android:scrollbars="vertical"
+        android:background="@android:drawable/edit_text"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/reviseOK"
+        android:layout_width="290dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="27dp"
+        android:onClick="reviseOK_Click"
+        android:text="@string/reviseOK"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="290dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="25dp"
+        android:onClick="back_click"
+        android:text="@string/back"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/reviseOK" />
+
+</android.support.constraint.ConstraintLayout>

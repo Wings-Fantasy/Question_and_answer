@@ -1,0 +1,37 @@
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item
+        android:id="@+id/add"
+        android:onClick="add_Click"
+        android:orderInCategory="100"
+        android:title="@string/add"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/revise"
+        android:onClick="revise_Click"
+        android:orderInCategory="100"
+        android:title="@string/revise"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/delete"
+        android:onClick="delete_Click"
+        android:orderInCategory="100"
+        android:title="@string/delete"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/input"
+        android:onClick="input_Click"
+        android:orderInCategory="100"
+        android:title="@string/input"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/output"
+        android:onClick="output_Click"
+        android:orderInCategory="100"
+        android:title="@string/output"
+        app:showAsAction="never" />
+
+</menu>

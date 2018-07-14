@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddActivity">
+
+    <TextView
+        android:id="@+id/addWordTip"
+        android:layout_width="277dp"
+        android:layout_height="31dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="39dp"
+        android:text="@string/addWordTip"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/word"
+        android:layout_width="282dp"
+        android:layout_height="51dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="@string/word"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addWordTip"
+        tools:ignore="LabelFor" />
+
+    <TextView
+        android:id="@+id/addAnswerTip"
+        android:layout_width="277dp"
+        android:layout_height="32dp"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/addAnswerTip"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/word" />
+
+    <EditText
+        android:id="@+id/addAnswer"
+        android:layout_width="282dp"
+        android:layout_height="51dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="@string/addAnswer"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addAnswerTip"
+        tools:ignore="LabelFor" />
+
+    <Button
+        android:id="@+id/addOK"
+        android:layout_width="283dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:onClick="addOK_Click"
+        android:text="@string/addOK"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addAnswer" />
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="283dp"
+        android:layout_height="52dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:onClick="back_click"
+        android:text="@string/back"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addOK" />
+
+</android.support.constraint.ConstraintLayout>
