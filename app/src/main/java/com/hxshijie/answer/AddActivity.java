@@ -39,29 +39,25 @@ public class AddActivity extends AppCompatActivity {
         String value = answer.getText().toString();
         if (key.length() > 0 && value.length() > 0) {
             try {
-                if (key.equals("作者")) {
-                    Toast.makeText(getBaseContext(), "修改作者可不是一个好行为哦", Toast.LENGTH_SHORT).show();
+                //获取所有key
+                Iterator<String> keys = json.getKeys();
+                boolean keyFlag = true;
+                while (keys.hasNext()) {
+                    if (keys.next().equals(key)) {
+                        keyFlag = false;
+                        break;
+                    }
+                }
+                if (keyFlag) {
+                    //添加到json中
+                    json.setValue(key, value);
+                    //复写到文件中
+                    FileOutputStream fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
+                    fileOutputStream.write(json.printJson().getBytes());
+                    Toast.makeText(getBaseContext(), "添加成功", Toast.LENGTH_SHORT).show();
+                    fileOutputStream.close();
                 } else {
-                    //获取所有key
-                    Iterator<String> keys = json.getKeys();
-                    boolean keyFlag = true;
-                    while (keys.hasNext()) {
-                        if (keys.next().equals(key)) {
-                            keyFlag = false;
-                            break;
-                        }
-                    }
-                    if (keyFlag) {
-                        //添加到json中
-                        json.setValue(key, value);
-                        //复写到文件中
-                        FileOutputStream fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
-                        fileOutputStream.write(json.printJson().getBytes());
-                        Toast.makeText(getBaseContext(), "添加成功", Toast.LENGTH_SHORT).show();
-                        fileOutputStream.close();
-                    } else {
-                        Toast.makeText(getBaseContext(), "\"" + key + "\"已添加过", Toast.LENGTH_SHORT).show();
-                    }
+                    Toast.makeText(getBaseContext(), "数据库中已有\"" + key + "\"", Toast.LENGTH_SHORT).show();
                 }
                 word.setText("");
                 answer.setText("");
