@@ -58,25 +58,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ok" />
 
-    <EditText
-        android:id="@+id/answer"
+    <FrameLayout
         android:layout_width="290dp"
         android:layout_height="225dp"
         android:layout_marginLeft="32dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="22dp"
-        android:background="@android:drawable/edit_text"
-        android:ems="10"
-        android:enabled="true"
-        android:focusable="false"
-        android:gravity="top"
-        android:inputType="textMultiLine"
-        android:maxLines="10"
-        android:minLines="10"
-        android:scrollbars="vertical"
-        android:text="@string/answer"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answerTip"
-        tools:ignore="LabelFor" />
+        app:layout_constraintTop_toBottomOf="@+id/answerTip">
+
+        <EditText
+            android:id="@+id/answer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:drawable/edit_text"
+            android:ems="10"
+            android:enabled="true"
+            android:focusable="false"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:scrollbars="vertical"
+            android:text="@string/answer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/answerTip"
+            tools:ignore="LabelFor" />
+
+        <ImageView
+            android:id="@+id/enlarge"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/not"
+            android:onClick="enlarge_Click"
+            android:visibility="invisible"
+            app:srcCompat="@drawable/enlarge"
+            tools:ignore="RtlHardcoded" />
+
+    </FrameLayout>
 </android.support.constraint.ConstraintLayout>

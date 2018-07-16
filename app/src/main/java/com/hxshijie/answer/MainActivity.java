@@ -3,8 +3,11 @@ package com.hxshijie.answer;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -13,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.hxshijie.util.JSON;
@@ -37,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
     private Timer timer = new Timer();
     private JSON json;
     private String fileName = "Answer.db";
-
     private String[] msg = {"你似乎没有问任何问题(．． )…", "你在想什么啊(o_ _)ﾉ"
             , "没事不要来打扰我！！！(* ￣︿￣)", "你不写问题是来逗我的吗╮(╯▽╰)╭"
             , "你想问什么（＃￣～￣＃）", ""};
@@ -60,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         //获取提问
         EditText question = findViewById(R.id.question);
         EditText answer = findViewById(R.id.answer);
+        ImageView enlarge = findViewById(R.id.enlarge);
         //校验提问是否有效
         if (question.getText().toString().length() > 0) {
             //获取key
@@ -79,6 +83,12 @@ public class MainActivity extends AppCompatActivity {
                     } else {
                         //通过key查找value
                         String value = json.getValue(key);
+                        //判断并显示放大按钮
+                        if (value.length() >= 100) {
+                            enlarge.setVisibility(View.VISIBLE);
+                        } else {
+                            enlarge.setVisibility(View.INVISIBLE);
+                        }
                         //显示在TextView中
                         answer.setText(value);
                     }
@@ -86,10 +96,12 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getBaseContext(), "系统出现异常", Toast.LENGTH_SHORT).show();
                 }
             } else {
+                enlarge.setVisibility(View.INVISIBLE);
                 //显示一句话
                 answer.setText("我也不知道，请检查是否录入过");
             }
         } else {
+            enlarge.setVisibility(View.INVISIBLE);
             Random random = new Random();
             int i = random.nextInt(msg.length);
             answer.setText(msg[i]);
@@ -129,6 +141,15 @@ public class MainActivity extends AppCompatActivity {
         } catch (JSONException e) {
             Toast.makeText(getBaseContext(), "数据文件错误", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void enlarge_Click(View view) {
+        EditText answer = findViewById(R.id.answer);
+        Intent intent = new Intent(MainActivity.this, EnlargeActivity.class);
+        Bundle bundle=new Bundle();
+        bundle.putString("value", answer.getText().toString());
+        intent.putExtra("answer", bundle);
+        startActivity(intent);
     }
 
     @Override
@@ -175,6 +196,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void output_Click(MenuItem item) {
+        //请求权限
+        String[] PERMISSIONS_STORAGE = {"android.permission.READ_EXTERNAL_STORAGE",
+                "android.permission.WRITE_EXTERNAL_STORAGE"};
+        int permission = ActivityCompat.checkSelfPermission(MainActivity.this,
+                "android.permission.WRITE_EXTERNAL_STORAGE");
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(MainActivity.this, PERMISSIONS_STORAGE, 0);
+        } else {
+            this.backups();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case 0:
+                if(grantResults.length >0 &&grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                    this.backups();
+                } else {
+                    Toast.makeText(getBaseContext(), "权限已被拒绝", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void backups () {
         //获取所有数据
         this.readDatabases(fileName);
         try {
@@ -189,8 +238,6 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "数据文件流异常", Toast.LENGTH_SHORT).show();
         }
     }
-
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -223,5 +270,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
 }
