@@ -14,10 +14,13 @@ import com.hxshijie.util.JSON;
 
 import org.json.JSONException;
 
+import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -68,8 +71,11 @@ public class DeleteActivity extends AppCompatActivity {
         //重新写入到数据库
         try {
             FileOutputStream fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
-            fileOutputStream.write(json.printJson().getBytes());
+            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF-8");
+            outputStreamWriter.write(json.printJson());
+            outputStreamWriter.flush();
             Toast.makeText(getBaseContext(), "删除成功", Toast.LENGTH_SHORT).show();
+            outputStreamWriter.close();
             fileOutputStream.close();
         } catch (IOException e) {
             Toast.makeText(getBaseContext(), "数据文件流错误", Toast.LENGTH_SHORT).show();
@@ -83,20 +89,24 @@ public class DeleteActivity extends AppCompatActivity {
     private void readDatabases(String fileName) {
         try {
             FileInputStream fileInputStream = openFileInput(fileName);
-            byte temp[] = new byte[1024];
-            StringBuilder stringBuilder = new StringBuilder("");
-            int len;
-            while ((len = fileInputStream.read(temp)) > 0){
-                stringBuilder.append(new String(temp, 0, len));
+            InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, "UTF-8");
+            BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+            StringBuilder jsonString = new StringBuilder();
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                jsonString.append(line);
             }
-            String jsonString = stringBuilder.toString();
+            bufferedReader.close();
+            inputStreamReader.close();
             fileInputStream.close();
-            json = new JSON(jsonString);
+            json = new JSON(jsonString.toString());
         } catch (FileNotFoundException e) {
             try {
                 FileOutputStream fileOutputStream = openFileOutput(fileName, MODE_PRIVATE);
+                OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream, "UTF-8");
                 String jsonString = "{"+"\"作者\":\"悲剧小白\""+"}";
-                fileOutputStream.write(jsonString.getBytes());
+                outputStreamWriter.write(jsonString);
+                outputStreamWriter.flush();
                 fileOutputStream.close();
                 json = new JSON(jsonString);
             } catch (IOException e1) {
